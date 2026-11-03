@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Platform-neutral heart of Pocket Agent: the agent loop, model providers, safety rules,
+    settings, voice HTTP engines, the MCP server (Rust engine) and the app controller.
+    It has no NuGet dependencies so it can be built and tested anywhere.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>12</LangVersion>
+    <RootNamespace>PocketAgent.Core</RootNamespace>
+    <AssemblyName>PocketAgent.Core</AssemblyName>
+    <Version>1.0.0</Version>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);CA1416</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="PocketAgent.Core.Tests" />
+  </ItemGroup>
+</Project>

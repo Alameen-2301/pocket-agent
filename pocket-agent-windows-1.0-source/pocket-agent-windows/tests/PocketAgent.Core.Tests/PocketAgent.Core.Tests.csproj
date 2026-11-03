@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Self-contained test runner (no NuGet test framework needed): dotnet run -c Release -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>12</LangVersion>
+    <IsPackable>false</IsPackable>
+    <NoWarn>$(NoWarn);CA1416</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <ProjectReference Include="..\..\src\PocketAgent.Core\PocketAgent.Core.csproj" />
+  </ItemGroup>
+  <!-- The Rust engine, when it has been built, is copied next to the tests for the MCP integration tests. -->
+  <ItemGroup>
+    <None Include="..\..\rust-core\target\release\libpocket_agent_core.so" Condition="Exists('..\..\rust-core\target\release\libpocket_agent_core.so')" CopyToOutputDirectory="PreserveNewest" Link="libpocket_agent_core.so" />
+    <None Include="..\..\rust-core\target\release\pocket_agent_core.dll" Condition="Exists('..\..\rust-core\target\release\pocket_agent_core.dll')" CopyToOutputDirectory="PreserveNewest" Link="pocket_agent_core.dll" />
+    <None Include="..\..\rust-core\target\release\libpocket_agent_core.dylib" Condition="Exists('..\..\rust-core\target\release\libpocket_agent_core.dylib')" CopyToOutputDirectory="PreserveNewest" Link="libpocket_agent_core.dylib" />
+  </ItemGroup>
+</Project>
